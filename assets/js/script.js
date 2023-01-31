@@ -14,6 +14,14 @@ document.addEventListener("DOMContentLoaded", function() {
             }
          });
     }
+    
+    document.getElementById("answer-box").addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            checkAnswer();
+        }
+
+    })
+    
     runGame("addition");
 });
 
@@ -24,6 +32,9 @@ document.addEventListener("DOMContentLoaded", function() {
  * and after the users answer has been processed 
  */
 function runGame(gameType) {
+
+    document.getElementById("answer-box").value = "";
+    document.getElementById("answer-box").focus();
 
     // Creates two random numbers between 1 and 25 //
     let num1 = Math.floor(Math.random() * 25) +1;
@@ -381,5 +392,23 @@ function displaySubtractQuestion(operand1, operand2) {
     document.getElementById('operand1').textContent = operand1 > operand2 ? operand1 : operand2;
     document.getElementById('operand2').textContent = operand1 < operand2 ? operand1 : operand2;
     document.getElementById('operator').textContent = "-";
+
+ --- End of Part Seven  ---------------------------------
+ 
+ --- Part Eight  ---------------------------------
+* add favicon item to HTML
+* clear out the answer-box before each game is run
+* set the focus - put the cursor inside the answer-box when the game is run
+* add eventListener so users can hit enter key instead of submit button
+
+added to runGame() function
+    document.getElementById("answer-box").value = "";
+    document.getElementById("answer-box").focus();
+
+added eventListener to DOM ContentLoaded section
+
+
+
+
 
 */
