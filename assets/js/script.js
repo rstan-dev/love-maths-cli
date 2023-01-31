@@ -23,7 +23,6 @@ document.addEventListener("DOMContentLoaded", function() {
  * The main game "loop", called when the script is first loaded
  * and after the users answer has been processed 
  */
-
 function runGame(gameType) {
 
     // Creates two random numbers between 1 and 25 //
@@ -32,17 +31,22 @@ function runGame(gameType) {
 
     if(gameType === "addition") {
         displayAdditionQuestion(num1, num2);
-    } else {
+
+    } else if (gameType === "multiply") {
+        displayMultiplyQuestion(num1, num2);
+
+    } else if (gameType === "subtract") {
+        displaySubtractQuestion(num1, num2);
+
+    } else   
         alert(`Unknown game type: ${gameType}`);
         throw `Unknown game type: ${gameType}.Aborting!`;
-    }
-}
+    } 
 
 /**
  *  Checks the answer against the first element in the
  * returned calculatedCorrectAnswer array
  */
-
 function checkAnswer() {
 
     let userAnswer = parseInt(document.getElementById("answer-box").value);
@@ -69,12 +73,19 @@ function calculateCorrectAnswer() {
       //wats happening:  parseInt ensures a number is being passed from the operand1 string.  The if statement returns an array containing (the answer of operand1 + operand 2) and the game type we want to run next (? not following this bit)
     
       let operand1 = parseInt(document.getElementById("operand1").innerText);
-    let operand2 = parseInt(document.getElementById("operand2").innerText);
-    let operator = document.getElementById("operator").innerText;
+      let operand2 = parseInt(document.getElementById("operand2").innerText);
+      let operator = document.getElementById("operator").innerText;
 
-    if (operator === "+") {
+      if (operator === "+") {
         return [operand1 + operand2, "addition"];
-    } else {
+    
+    } else if (operator === "x") {
+        return [operand1 * operand2, "multiply"];
+
+    } else if (operator === "-") {
+        return [operand1 - operand2, "subtract"];
+    
+    }  else {
         alert(`Unimplemented operator ${operator}`);
         throw `Unimplemented operator ${operator}.Aborting!`;
     }
@@ -86,7 +97,6 @@ function calculateCorrectAnswer() {
 function incrementScore() {
     let oldScore = parseInt(document.getElementById("score").innerText);
     document.getElementById("score").innerText = ++oldScore;
-
 }
 
 /**
@@ -96,22 +106,24 @@ function incrementScore() {
 function incrementWrongAnswer() {
     let incorrectScore = parseInt(document.getElementById("incorrect-score").innerText);
     document.getElementById("incorrect-score").innerText = ++incorrectScore;
-
 }
 
 function displayAdditionQuestion(operand1, operand2) {
     document.getElementById('operand1').textContent = operand1;
     document.getElementById('operand2').textContent = operand2;
     document.getElementById('operator').textContent = "+";
-
 }
 
-function displaySubtractQuestion() {
-
+function displaySubtractQuestion(operand1, operand2) {
+    document.getElementById('operand1').textContent = operand1 > operand2 ? operand1 : operand2;
+    document.getElementById('operand2').textContent = operand1 < operand2 ? operand1 : operand2;
+    document.getElementById('operator').textContent = "-";
 }
 
-function displayMutiplyQuestion() {
-
+function displayMultiplyQuestion(operand1, operand2) {
+    document.getElementById('operand1').textContent = operand1;
+    document.getElementById('operand2').textContent = operand2;
+    document.getElementById('operator').textContent = "x";   
 }
 
 function displayDivideQuestion() {
@@ -298,8 +310,76 @@ function checkAnswer() {
 --- End of Part Five  ---------------------------------
 
 --- Part six  ---------------------------------
+add in multply fucntionality
+3 things are needed
+1. update runGame()
+2. add displayMultiplyQuestion
+3. update calculateCorrectAnswer function
 
 
+===updated else if statement in runGame() code:
 
+function runGame(gameType) {
+
+    // Creates two random numbers between 1 and 25 //
+    let num1 = Math.floor(Math.random() * 25) +1;
+    let num2 = Math.floor(Math.random() * 25) +1;
+
+    if(gameType === "addition") {
+        displayAdditionQuestion(num1, num2);
+        
+    } else if (gameType === "multiply") {
+        displayMultiplyQuestion(num1, num2);
+
+    } else   
+        alert(`Unknown game type: ${gameType}`);
+        throw `Unknown game type: ${gameType}.Aborting!`;
+    }
+
+
+=== created multiply question
+function displayMultiplyQuestion(operand1, operand2) {
+    document.getElementById('operand1').textContent = operand1;
+    document.getElementById('operand2').textContent = operand2;
+    document.getElementById('operator').textContent = "x";
+}
+
+
+===updated else if statement in calulcateCorrectAnswer()
+
+function calculateCorrectAnswer() {
+         
+      let operand1 = parseInt(document.getElementById("operand1").innerText);
+    let operand2 = parseInt(document.getElementById("operand2").innerText);
+    let operator = document.getElementById("operator").innerText;
+
+    if (operator === "+") {
+        return [operand1 + operand2, "addition"];
+    
+    } else if (operator === "x") {
+        return [operand1 * operand2, "multiply"];
+
+    }  else {
+        alert(`Unimplemented operator ${operator}`);
+        throw `Unimplemented operator ${operator}.Aborting!`;
+    }
+}
+
+--- End of Part six  ---------------------------------
+
+--- Part Seven  ---------------------------------
+add subtraction functionality - but making an adjustment so its not a negative answer - use the ternary operator and statement
+
+3 things are needs
+1. update runGame()  - add in the else if for subtraction
+2. add displaySubtractQuestion()
+3. update calculateCorrectAnswer function - add in the else if for subtraction
+
+=== displaySubtractQuestion function code with ternary statement:
+
+function displaySubtractQuestion(operand1, operand2) {
+    document.getElementById('operand1').textContent = operand1 > operand2 ? operand1 : operand2;
+    document.getElementById('operand2').textContent = operand1 < operand2 ? operand1 : operand2;
+    document.getElementById('operator').textContent = "-";
 
 */
