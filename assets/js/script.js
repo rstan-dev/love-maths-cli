@@ -50,9 +50,11 @@ function checkAnswer() {
     let isCorrect = userAnswer === calculatedAnswer[0];
 
     if (isCorrect) {
-        alert("You got it right!")
+        alert("You got it right!");
+        incrementScore();
     } else {
         alert(`You got it wrong, you answered ${userAnswer}. The correct answer is ${calculatedAnswer[0]}!`);
+        incrementWrongAnswer();
     }
 
     runGame(calculatedAnswer[1]);
@@ -78,11 +80,22 @@ function calculateCorrectAnswer() {
     }
 }
 
+/**
+ * Gets the current score from the DOm and increments it by 1
+ */
 function incrementScore() {
+    let oldScore = parseInt(document.getElementById("score").innerText);
+    document.getElementById("score").innerText = ++oldScore;
 
 }
 
+/**
+ * Gets the current tally of incorrect answers from the DOm and increments it by 1
+ */
+
 function incrementWrongAnswer() {
+    let incorrectScore = parseInt(document.getElementById("incorrect-score").innerText);
+    document.getElementById("incorrect-score").innerText = ++incorrectScore;
 
 }
 
@@ -237,5 +250,56 @@ function checkAnswer() {
 }
 
 --- End of Part Four  ---------------------------------
+
+
+--- Part Five  ---------------------------------
+
+Incerement score functions for correct and incorrect answers.
+Then add these function calls into the checkAnswer() function 
+
+// Gets the current score from the DOm and increments it by 1
+ 
+function incrementScore() {
+    let oldScore = parseInt(document.getElementById("score").innerText);
+    document.getElementById("score").innerText = ++oldScore;
+
+}
+
+
+ // Gets the current tally of incorrect answers from the DOm and increments it by 1
+ 
+
+function incrementWrongAnswer() {
+    let incorrectScore = parseInt(document.getElementById("incorrect-score").innerText);
+    document.getElementById("incorrect-score").innerText = ++incorrectScore;
+
+}
+
+
+--- and update this function with the new increment functions
+
+function checkAnswer() {
+
+    let userAnswer = parseInt(document.getElementById("answer-box").value);
+    let calculatedAnswer = calculateCorrectAnswer();
+    let isCorrect = userAnswer === calculatedAnswer[0];
+
+    if (isCorrect) {
+        alert("You got it right!");
+        incrementScore();
+    } else {
+        alert(`You got it wrong, you answered ${userAnswer}. The correct answer is ${calculatedAnswer[0]}!`);
+        incrementWrongAnswer();
+    }
+
+    runGame(calculatedAnswer[1]);
+}
+
+--- End of Part Five  ---------------------------------
+
+--- Part six  ---------------------------------
+
+
+
 
 */
