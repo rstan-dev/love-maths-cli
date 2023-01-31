@@ -7,13 +7,12 @@ document.addEventListener("DOMContentLoaded", function() {
     for (let button of buttons) {
          button.addEventListener("click", function() {
             if (this.getAttribute("data-type") === "submit") {
-                alert("You clicked submit!");
+                checkAnswer();
             } else {
                 let gameType = this.getAttribute("data-type");
                 runGame(gameType);
             }
          });
-
     }
     runGame("addition");
 });
@@ -37,11 +36,26 @@ function runGame(gameType) {
         alert(`Unknown game type: ${gameType}`);
         throw `Unknown game type: ${gameType}.Aborting!`;
     }
-
 }
+
+/**
+ *  Checks the answer against the first element in the
+ * returned calculatedCorrectAnswer array
+ */
 
 function checkAnswer() {
 
+    let userAnswer = parseInt(document.getElementById("answer-box").value);
+    let calculatedAnswer = calculateCorrectAnswer();
+    let isCorrect = userAnswer === calculatedAnswer[0];
+
+    if (isCorrect) {
+        alert("You got it right!")
+    } else {
+        alert(`You got it wrong, you answered ${userAnswer}. The correct answer is ${calculatedAnswer[0]}!`);
+    }
+
+    runGame(calculatedAnswer[1]);
 }
 
 /**
@@ -188,10 +202,40 @@ function calculateCorrectAnswer() {
     }
 }
 
+--- End of Part Three ---------------------------------
 
+--- Part Four  ---------------------------------
 
+* create this code in dev tools console to understand how
+* to check if answer is correct (true or false) 
 
+let userAnswer = 23;
+undefined
+let calculatedAnswer = [21, "addition"];
+undefined
+let isCorrect = userAnswer === calculatedAnswer[0];
+undefined
+isCorrect
+false
 
+* use this code to create the checkAnswer() function. 
+* Whats happening?  we are getting the answer from the dom ("answer-box"), we are getting the answer from calculateCorrectAnswer(), we are comparing the two (remember it returns an array so its index [0]).  if its correct there is a winn alert, otherwise (else) the alert says it is wrong, and gives the correct calculatedAnswer... 
 
+function checkAnswer() {
+
+    let userAnswer = parseInt(document.getElementById("answer-box").value);
+    let calculatedAnswer = calculateCorrectAnswer();
+    let isCorrect = userAnswer === calculatedAnswer[0];
+
+    if (isCorrect) {
+        alert("You got it right!")
+    } else {
+        alert(`You got it wrong, you answered ${userAnswer}. The correct answer is ${calculatedAnswer[0]}!`);
+    }
+
+    runGame(calculatedAnswer[1]);
+}
+
+--- End of Part Four  ---------------------------------
 
 */
