@@ -49,6 +49,9 @@ function runGame(gameType) {
     } else if (gameType === "subtract") {
         displaySubtractQuestion(num1, num2);
 
+    } else if (gameType === "division") {
+        displayDivideQuestion(num1, num2);
+
     } else   
         alert(`Unknown game type: ${gameType}`);
         throw `Unknown game type: ${gameType}.Aborting!`;
@@ -95,6 +98,9 @@ function calculateCorrectAnswer() {
 
     } else if (operator === "-") {
         return [operand1 - operand2, "subtract"];
+
+    } else if (operator === "/") {
+        return [operand1 / operand2, "division"];
     
     }  else {
         alert(`Unimplemented operator ${operator}`);
@@ -137,9 +143,12 @@ function displayMultiplyQuestion(operand1, operand2) {
     document.getElementById('operator').textContent = "x";   
 }
 
-function displayDivideQuestion() {
-
+function displayDivideQuestion(operand1, operand2) {
+    document.getElementById('operand1').textContent = operand1 * operand2;
+    document.getElementById('operand2').textContent = operand2;
+    document.getElementById('operator').textContent = "/";
 }
+
 
 
 
@@ -406,8 +415,31 @@ added to runGame() function
     document.getElementById("answer-box").focus();
 
 added eventListener to DOM ContentLoaded section
+   document.getElementById("answer-box").addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            checkAnswer();
+        }
+    })
+
+--- End of Part Eight  ---------------------------------
+
+--- Part Nine  ---------------------------------
+Add the division function - makiiung sure it returns a whole number
+3 things are needs
+1. update runGame()  - add in the else if for division
+2. add displayDivideQuestion() - you can easily make sure the first operand is divisible by the second operand by multiplying your two random numbers and using the result as operand1. You can then use either of the random numbers as operand2 
+3. update calculateCorrectAnswer function - add in the else if for division
 
 
+added a copy of else if to runGame() and calculateCorrectAnswer()
+
+code for displayDivideQuestion():
+
+function displayDivideQuestion(operand1, operand2) {
+    document.getElementById('operand1').textContent = operand1 * operand2;
+    document.getElementById('operand2').textContent = operand2;
+    document.getElementById('operator').textContent = "/";
+}
 
 
 
