@@ -1,11 +1,18 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Love Maths Walkthrough Project
 
-## Deployed Site
+## Project Screenshot
 
-https://rstan-dev.github.io/love-maths-cli/
+<img src="assets/images/Final game Screenshot.jpg">
 
+## Link to Final Site
+* [Link to Deployed Project](https://rstan-dev.github.io/love-maths-cli/)
+* Gitpod: use 'python3 -m http.server' to preview in server
 
+## Purpose
+*  Walkthrough project to build a maths game, learnign about various javascript functions
 
+## Credits
+*  Code Institute Javascript Essentials Module
 
 ## Gitpod Reminders
 
@@ -36,4 +43,3 @@ To log into the Heroku toolbelt CLI:
 You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
 
 ------
-
